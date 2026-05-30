@@ -1,4 +1,4 @@
-﻿using FinanceTracker.Application.Expenses;
+﻿using FinanceTracker.Application.Categories;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,17 +6,17 @@ namespace FinanceTracker.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ExpensesController : ControllerBase
+    public class CategoriesController : ControllerBase
     {
-        private readonly IMediator _mediator;
+        private IMediator _mediator;
 
-        public ExpensesController(IMediator mediator)
+        public CategoriesController(Mediator mediator)
         {
             _mediator = mediator;
         }
 
         /// <summary>
-        /// Registers a new expense
+        /// Registers a new category
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -24,11 +24,11 @@ namespace FinanceTracker.API.Controllers
         [ProducesResponseType(typeof(Guid), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<Guid>> CreateExpense([FromBody] RegisterExpenseCommand request)
+        public async Task<ActionResult<Guid>> CreateCategory([FromBody] RegisterCategoryCommand request)
         {
             var result = await _mediator.Send(request);
 
-            return this.Created($"api/expenses/{result}", result);
+            return this.Created($"api/categories/{result}", result);
         }
     }
 }
