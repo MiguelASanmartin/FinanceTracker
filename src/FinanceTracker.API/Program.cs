@@ -1,4 +1,6 @@
 using FinanceTracker.API.Middlewares;
+using FinanceTracker.Application.Accounts;
+using FinanceTracker.Application.Categories;
 using FinanceTracker.Application.Expenses;
 using FinanceTracker.Infrastructure.Persistence;
 using FinanceTracker.Infrastructure.Persistence.Repositories;
@@ -11,6 +13,8 @@ builder.Services.AddControllers();
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(IExpenseRepository).Assembly));
 builder.Services.AddDbContext<FinanceTrackerDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddScoped<IExpenseRepository, ExpenseRepository>();
+builder.Services.AddScoped<IAccountRepository, AccountRepository>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
 var app = builder.Build();
 

@@ -1,4 +1,6 @@
-﻿using FinanceTracker.Domain.Expenses;
+﻿using FinanceTracker.Domain.Accounts;
+using FinanceTracker.Domain.Categories;
+using FinanceTracker.Domain.Expenses;
 using Microsoft.EntityFrameworkCore;
 
 namespace FinanceTracker.Infrastructure.Persistence
@@ -12,5 +14,8 @@ namespace FinanceTracker.Infrastructure.Persistence
 
         public DbSet<Expense> Expenses => Set<Expense>();
 
+        public DbSet<Account> Accounts => Set<Account>();
+
+        public DbSet<Category> Categories => Set<Category>();
     }
 }
