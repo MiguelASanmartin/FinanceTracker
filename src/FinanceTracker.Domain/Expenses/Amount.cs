@@ -4,6 +4,8 @@
     {
         public decimal Value { get; }
 
+        private Amount() { }
+
         public Amount(decimal value) 
         {
             if (value <= 0) throw new InvalidAmountException($"Amount must be greater than zero, got {value}");
