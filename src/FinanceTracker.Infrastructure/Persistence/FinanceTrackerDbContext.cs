@@ -17,5 +17,15 @@ namespace FinanceTracker.Infrastructure.Persistence
         public DbSet<Account> Accounts => Set<Account>();
 
         public DbSet<Category> Categories => Set<Category>();
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Expense>()
+                .OwnsOne(e => e.Amount, a => a.Property(x => x.Value).HasPrecision(18, 2));
+
+            modelBuilder.Entity<Account>()
+                .Property(a => a.Balance)
+                .HasPrecision(18, 2);
+        }
     }
 }
