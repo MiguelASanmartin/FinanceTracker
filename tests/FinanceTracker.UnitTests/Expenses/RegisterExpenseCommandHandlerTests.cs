@@ -2,7 +2,6 @@
 using FinanceTracker.Domain;
 using FinanceTracker.Domain.Expenses;
 using Moq;
-using System.Net.Http.Headers;
 
 namespace FinanceTracker.UnitTests.Expenses
 {
