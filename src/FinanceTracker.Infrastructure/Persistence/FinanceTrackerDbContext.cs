@@ -1,4 +1,5 @@
 ﻿using FinanceTracker.Domain.Accounts;
+using FinanceTracker.Domain.Budgets;
 using FinanceTracker.Domain.Categories;
 using FinanceTracker.Domain.Expenses;
 using Microsoft.EntityFrameworkCore;
@@ -18,6 +19,8 @@ namespace FinanceTracker.Infrastructure.Persistence
 
         public DbSet<Category> Categories => Set<Category>();
 
+        public DbSet<Budget> Budgets => Set<Budget>();
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Expense>()
@@ -26,6 +29,10 @@ namespace FinanceTracker.Infrastructure.Persistence
             modelBuilder.Entity<Account>()
                 .Property(a => a.Balance)
                 .HasPrecision(18, 2);
+
+            modelBuilder.Entity<Budget>()
+                .Property(a => a.TotalSpent)
+                .HasPrecision(18, 2);   
         }
     }
 }
